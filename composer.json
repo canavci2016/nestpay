@@ -3,7 +3,7 @@
   "description": "Nestpay bank integrations",
   "require": {
     "canavci/form-builder": "dev-master",
-    "illuminate/http": "5.8.x-dev"
+    "illuminate/http": "5.5.x-dev"
   },
   "autoload": {
     "psr-4": {
