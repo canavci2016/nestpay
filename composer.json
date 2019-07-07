@@ -1,6 +1,6 @@
 {
   "name": "canavci/nestpay",
-  "description": "Nestpay bank integrations which is to be used in Banks ZiraatBank, FinansBank ,İşBank vs vs.",
+  "description": "Nestpay bank integrations which is to be used in Banks ZiraatBank, FinansBank ,İşBank etc.",
   "require": {
     "canavci/form-builder": "dev-master",
     "illuminate/http": "5.5.x-dev"
