@@ -1,0 +1,21 @@
+{
+  "name": "canavci/nestpay",
+  "description": "Nestpay bank integrations",
+  "require": {
+    "canavci/form-builder": "dev-master",
+    "illuminate/http": "5.8.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nestpay\\": "src/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "can",
+      "email": "canavci2017@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
