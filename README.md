@@ -1,6 +1,11 @@
 <?php
 
-// ##v.1.0.0  notes
+// ##v.2.0.0   
+
+// Releasing notes
+
+this version for laravel 5.4 support
+
 
 use Nestpay\Nestpay;
 
