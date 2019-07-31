@@ -18,7 +18,7 @@ $request = \Illuminate\Http\Request::createFromGlobals();
 $request->merge(['adaw' => 'awd']);
 print_r($request->all());
 
-$nestpay = new A('190015226', 'G803njs83Huge', 'https://sanalpos2.ziraatbank.com.tr/fim/est3Dgate');
+$nestpay = new A(CLIENT_ID, STORE_KEY, 'https://sanalpos2.ziraatbank.com.tr/fim/est3Dgate');
 
 /*
 $nestpay
