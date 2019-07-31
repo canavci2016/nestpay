@@ -3,7 +3,7 @@
   "description": "Nestpay bank integrations which is to be used in Banks ZiraatBank, FinansBank ,İşBank etc.",
   "require": {
     "canavci/form-builder": "1.0.0",
-    "illuminate/http": "5.5.x-dev"
+    "illuminate/http": "5.4.x-dev"
   },
   "autoload": {
     "psr-4": {
