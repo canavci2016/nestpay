@@ -73,8 +73,8 @@ trait Process
         $this->card = [
             'number' => $number,
             'cv2' => $cv2,
-            'exp_year' => $exp_month,
-            'exp_month' => $exp_year,
+            'exp_month' => $exp_month,
+            'exp_year' => $exp_year,
             'type' => $cardType,
         ];
 
