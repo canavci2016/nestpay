@@ -14,6 +14,11 @@ trait Process
         'card_type' => null,
     ];
 
+    public function processByCurrencyCode($orderId, $amount, $curCode, $installment = 1)
+    {
+        return $this->process($orderId, $amount, $this->getCurrencyNumber($curCode), $installment);
+    }
+
     public function process($orderId, $amount, $currencyCode, $installment = '')
     {
         $installment = intval($installment) > 1 ? $installment : '';

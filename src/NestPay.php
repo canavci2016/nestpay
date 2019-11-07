@@ -17,7 +17,15 @@ abstract class NestPay extends BasePaymentProvider
     protected $successUrl = null;
     protected $failUrl = null;
     protected $randomNumber = null;
-    protected $supportedCurrencies = [];
+    /**
+     * international currency codes. taken from https://www.iban.com/currency-codes
+     */
+    protected $supportedCurrencies = [
+        'TRY' => '949',
+        'TL' => '949',
+        'EUR' => '978',
+        'USD' => '840',
+    ];
 
 
     public function __construct($clientId, $storeKey, $url)
@@ -30,6 +38,11 @@ abstract class NestPay extends BasePaymentProvider
     public function supportedCurrencies(): array
     {
         return $this->supportedCurrencies;
+    }
+
+    public function getCurrencyNumber($code)
+    {
+        return $this->supportedCurrencies[strtoupper($code)];
     }
 
     public function setUrl(string $url)
