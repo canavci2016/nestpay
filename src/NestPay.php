@@ -27,7 +27,6 @@ abstract class NestPay extends BasePaymentProvider
         'USD' => '840',
     ];
 
-
     public function __construct($clientId, $storeKey, $url)
     {
         $this->setClientId($clientId);
@@ -42,7 +41,18 @@ abstract class NestPay extends BasePaymentProvider
 
     public function getCurrencyNumber($code)
     {
-        return $this->supportedCurrencies[strtoupper($code)];
+        return $this->supportedCurrencies[$this->prepareCurrencyCode($code)];
+    }
+
+    public function setCurrency($code, int $number)
+    {
+        $this->supportedCurrencies[$this->prepareCurrencyCode($code)] = $number;
+        return $this;
+    }
+
+    private function prepareCurrencyCode($code)
+    {
+        return strtoupper($code);
     }
 
     public function setUrl(string $url)
