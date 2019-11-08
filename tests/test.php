@@ -21,6 +21,7 @@ print_r($request->all());
 $nestpay = new A('CLIENT_ID', 'STORE_KEY', 'https://sanalpos2.ziraatbank.com.tr/fim/est3Dgate');
 
 
+$nestpay->setCurrency('CAD', 124);
 $nestpay
     ->setSuccessUrl('canavci.com/success')
     ->setFailUrl('canavci.com/fail')
