@@ -3,16 +3,11 @@
 namespace Nestpay\Traits;
 
 use FormBuilder\FormBuilder as Form;
+use Nestpay\Objects\BankCard;
 
 trait Process
 {
-    protected $card = [
-        'number' => null,
-        'cv2' => null,
-        'exp_year' => null,
-        'exp_month' => null,
-        'card_type' => null,
-    ];
+    protected $card = null;
 
     public function processByCurrencyCode($orderId, $amount, $curCode, $installment = 1)
     {
@@ -24,12 +19,13 @@ trait Process
         $installment = intval($installment) > 1 ? $installment : '';
         $this->setRandomNumber(microtime());
         $card = $this->getCard();
+
         (new Form($this->getUrl(), 'POST'))
-            ->inputText('pan', $card['number'])
-            ->inputText('cv2', $card['cv2'])
-            ->inputText('Ecom_Payment_Card_ExpDate_Year', $card['exp_year'])
-            ->inputText('Ecom_Payment_Card_ExpDate_Month', $card['exp_month'])
-            ->inputText('cardType', $card['type'])
+            ->inputText('pan', $card->getNumber())
+            ->inputText('cv2', $card->getCvv())
+            ->inputText('Ecom_Payment_Card_ExpDate_Year', $card->getExpYear())
+            ->inputText('Ecom_Payment_Card_ExpDate_Month', $card->getExpMonth())
+            ->inputText('cardType', $card->scheme() == 'mastercard' ? 2 : 1)
             ->inputHidden('clientid', $this->getClientId())
             ->inputHidden('amount', $amount)
             ->inputHidden('oid', $orderId)
@@ -63,30 +59,11 @@ trait Process
 
     public function setCard($holder_name, $number, $cv2, $exp_month, $exp_year)
     {
-        $cardType = parent::creditCardType($number);
-        switch ($cardType) {
-            case 'visa':
-                $cardType = 1;
-                break;
-            case 'mastercard':
-                $cardType = 2;
-                break;
-            default:
-                $cardType = 1;
-        }
-
-        $this->card = [
-            'number' => $number,
-            'cv2' => $cv2,
-            'exp_month' => $exp_month,
-            'exp_year' => $exp_year,
-            'type' => $cardType,
-        ];
-
+        $this->card = new BankCard($holder_name, $number, $cv2, $exp_month, $exp_year);
         return $this;
     }
 
-    public function getCard(): array
+    public function getCard(): BankCard
     {
         return $this->card;
     }
